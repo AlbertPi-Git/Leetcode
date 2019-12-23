@@ -1,0 +1,1 @@
+Decide to write down my ideas and solutions of leetcode problems.
