@@ -37,12 +37,12 @@ class Solution:
                 return False
             return compareTree(root1.left,root2.left) and compareTree(root1.right,root2.right)
             
-        def Tranversal(root):
+        def Traversal(root):
             if not root:
                 return False
             if compareTree(root,root2):
                 return True
-            return Tranversal(root.left) or Tranversal(root.right)
+            return Traversal(root.left) or Traversal(root.right)
         
-        return Tranversal(root1)
+        return Traversal(root1)
 ```
