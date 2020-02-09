@@ -1,1 +1,1 @@
-Decide to write down my ideas and solutions of leetcode problems.
+Brief ideas and solutions of leetcode and other code challenges.
