@@ -45,3 +45,34 @@ public:
     }
 };
 ```
+
+## Improvement
+No need to iterate from the back to front to obtain the number. res=res*10+str[i]-'0' can do that.
+```c++
+class Solution {
+public:
+    int myAtoi(string str) {
+        if(str.empty())
+            return 0;
+        int i=0,sign=1;
+        long res=0;
+        int maxInt=(~(unsigned int)0)>>1;
+        int minInt=1<<31;
+        while(str[i]==' ')++i;
+        if(str[i]=='-')
+            sign=-1;
+        if(str[i]=='+'||str[i]=='-')
+            ++i;
+        for(;i<str.size();++i){
+            if(str[i]<'0'||str[i]>'9')  //If it's not a number char, end the loop. (this also include the case where the first non space number is non number char, then it directly return res=0)
+                break;
+            res=res*10+(str[i]-'0');
+            if((sign>0 && res>maxInt)||(sign<0 && -res<minInt)){
+                res=(sign>0)?maxInt:minInt;
+                return res;
+            }
+        }
+        return (sign>0)?res:-res;
+    }
+};
+```
