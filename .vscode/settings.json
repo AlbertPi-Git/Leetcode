@@ -50,6 +50,9 @@
         "iterator": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "iomanip": "cpp"
-    }
+        "iomanip": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
+    },
+    "python.pythonPath": "C:\\Users\\AlbertPi\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
 }

@@ -31,7 +31,7 @@ public:
         while(fast!=nullptr && fast->next!=nullptr){
             fast=fast->next->next;
             slow=slow->next;
-            if(slow==fast)
+            if(slow==fast)      // can't put this into while() since slow==fast at the beginning, but also can't use (slow!=fast||fast==head) to avoid this problem since it will cause endless loop if entrance of cycle is the head.
                 break;
         }
         if(fast==nullptr || fast->next==nullptr)
