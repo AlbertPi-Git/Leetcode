@@ -52,7 +52,8 @@
         "random": "cpp",
         "iomanip": "cpp",
         "condition_variable": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "list": "cpp"
     },
     "python.pythonPath": "C:\\Users\\AlbertPi\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
 }

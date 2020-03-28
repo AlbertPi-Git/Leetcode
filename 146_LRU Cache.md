@@ -106,3 +106,80 @@ class LRUCache:
         else:
             self.dic.put(key,value)
 ```
+
+
+## C++ Implementation
+```c++
+class LinkedHashMap{
+private:
+    std::list<std::pair<int,int>> LinkedList;
+    std::unordered_map<int,std::list<std::pair<int,int>>::iterator> HashMap;
+
+public:
+    void insert(int key,int val){
+        if(find(key)){
+            LinkedList.erase(HashMap[key]);
+            HashMap.erase(key);
+            LinkedList.push_back(std::make_pair(key,val));
+            HashMap.insert(std::make_pair(key,--LinkedList.end()));
+        }else{
+            LinkedList.push_back(std::make_pair(key,val));
+            HashMap.insert(std::make_pair(key,--LinkedList.end()));
+        }
+    } 
+
+    void eraseOldest(){
+        if(size()==0){
+            std::cerr<<"Erase from empty LinkedHashMap\n";
+            abort();
+        }else{
+            HashMap.erase(LinkedList.front().first);
+            LinkedList.pop_front();
+        }
+    }
+
+    std::list<std::pair<int,int>>::iterator& operator [] (int key){
+        if(HashMap.find(key)==HashMap.end()){
+            std::cerr<<"Key not found\n";
+            abort();
+        }else{
+            return HashMap[key];
+        }
+    }
+    
+    bool find(int key){
+        return HashMap.find(key)!=HashMap.end();
+    }
+
+    int size(){
+        return LinkedList.size();
+    }
+};
+
+class LRUCache {
+private:
+    LinkedHashMap Cache;
+    int capacity;
+public:
+    LRUCache(int capacity):capacity(capacity) {}
+    
+    int get(int key) {
+        if(Cache.find(key)){
+            int val=Cache[key]->second;
+            Cache.insert(key,val);
+            return val;
+        }else{
+            return -1;
+        }
+    }
+    
+    void put(int key, int val) {
+        if(Cache.size()==capacity&&!Cache.find(key)){
+            Cache.eraseOldest();
+            Cache.insert(key,val);
+        }else{
+            Cache.insert(key,val);
+        }
+    }
+};
+```

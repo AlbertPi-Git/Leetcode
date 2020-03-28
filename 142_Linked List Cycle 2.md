@@ -45,3 +45,30 @@ public:
     }
 };
 ```
+
+Use dummy node can solve the above problem and make if(slow==fast&&slow!=dummy) can be put at the beginning of the loop
+```c++
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* dummy=new ListNode(-1);
+        dummy->next=head;
+        ListNode* fast=dummy;
+        ListNode* slow=dummy;
+        while(fast&&fast->next){
+            if(slow==fast&&slow!=dummy)
+                break;
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        if(!fast||!fast->next)
+            return nullptr;
+        slow=dummy;
+        while(slow!=fast){
+            slow=slow->next;
+            fast=fast->next;
+        }
+        return slow;
+    }
+};
+```
