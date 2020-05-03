@@ -79,7 +79,7 @@ public:
         while(i<j){
             while(nums[j]>=pivot&&i<j)--j;      // If place to pivot at the left side, then must start search from right side. And vice versa
             while(nums[i]<=pivot&&i<j)++i;
-            swap(nums[i],nums[j]);
+            swap(nums[i],nums[j]);  // it's either nums[i]>mid,nums[j]<mid or i==j, so no need to check and swap only when i<j. Just directly swap
         }
         swap(nums[left],nums[i]);
         mid=i;

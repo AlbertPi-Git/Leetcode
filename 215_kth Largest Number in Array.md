@@ -21,3 +21,24 @@ public:
     }
 };
 ```
+
+## Let the size of MinHeap be k+1
+```c++
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        std::priority_queue<int,std::vector<int>,std::greater<int>> q;
+        for(int i=0;i<nums.size();++i){
+            if(q.size()<k+1){
+                q.push(nums[i]);
+            }else{
+                q.push(nums[i]);
+                q.pop();
+            }
+        }
+        if(q.size()>k)
+            q.pop();
+        return q.top();
+    }
+};
+```
